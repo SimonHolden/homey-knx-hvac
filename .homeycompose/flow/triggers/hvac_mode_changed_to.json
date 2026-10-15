@@ -1,0 +1,8 @@
+{
+  "title": { "en": "HVAC mode changed to..." },
+  "titleFormatted": { "en": "HVAC mode changed to [[mode]]" },
+  "args": [
+    { "type": "device", "name": "device", "filter": "driver_id=thermostat" },
+    { "type": "autocomplete", "name": "mode", "placeholder": { "en": "Select a mode" } }
+  ]
+}

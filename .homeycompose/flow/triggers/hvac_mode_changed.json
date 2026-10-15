@@ -1,0 +1,10 @@
+{
+  "title": { "en": "HVAC mode changed" },
+  "tokens": [
+    { "name": "mode", "type": "string", "title": { "en": "Mode id" }, "example": { "en": "heat" } },
+    { "name": "mode_name", "type": "string", "title": { "en": "Mode" }, "example": { "en": "Heat" } }
+  ],
+  "args": [
+    { "type": "device", "name": "device", "filter": "driver_id=thermostat" }
+  ]
+}

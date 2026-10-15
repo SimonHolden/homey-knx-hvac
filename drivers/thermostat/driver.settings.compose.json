@@ -1,0 +1,486 @@
+[
+  {
+    "type": "group",
+    "label": {
+      "en": "On/Off (DPT 1.001)"
+    },
+    "children": [
+      {
+        "id": "ga_onoff_write",
+        "type": "text",
+        "label": {
+          "en": "Control address"
+        },
+        "value": "",
+        "hint": {
+          "en": "Group address Homey writes to, for example 1/0/1. Leave empty if the thermostat has no on/off object."
+        }
+      },
+      {
+        "id": "ga_onoff_status",
+        "type": "text",
+        "label": {
+          "en": "Status address"
+        },
+        "value": "",
+        "hint": {
+          "en": "Group address the device reports its state on."
+        }
+      }
+    ]
+  },
+  {
+    "type": "group",
+    "label": {
+      "en": "Mode (DPT 20.105)"
+    },
+    "children": [
+      {
+        "id": "ga_mode_write",
+        "type": "text",
+        "label": {
+          "en": "Control address"
+        },
+        "value": "",
+        "hint": {
+          "en": "HVAC controller mode, 1 byte."
+        }
+      },
+      {
+        "id": "ga_mode_status",
+        "type": "text",
+        "label": {
+          "en": "Status address"
+        },
+        "value": ""
+      }
+    ]
+  },
+  {
+    "type": "group",
+    "label": {
+      "en": "Heat/Cool (DPT 1.100)"
+    },
+    "children": [
+      {
+        "id": "ga_heatcool_write",
+        "type": "text",
+        "label": {
+          "en": "Control address"
+        },
+        "value": "",
+        "hint": {
+          "en": "Simple binary object, 0 = cool, 1 = heat. Use it on its own for thermostats without a mode object. If the 20.105 mode is also set, 20.105 is authoritative and this address is kept in sync when heat or cool is selected."
+        }
+      },
+      {
+        "id": "ga_heatcool_status",
+        "type": "text",
+        "label": {
+          "en": "Status address"
+        },
+        "value": "",
+        "hint": {
+          "en": "Only used when no 20.105 mode address is set."
+        }
+      }
+    ]
+  },
+  {
+    "type": "group",
+    "label": {
+      "en": "Setpoint (DPT 9.001)"
+    },
+    "children": [
+      {
+        "id": "ga_setpoint_write",
+        "type": "text",
+        "label": {
+          "en": "Control address"
+        },
+        "value": ""
+      },
+      {
+        "id": "ga_setpoint_status",
+        "type": "text",
+        "label": {
+          "en": "Status address"
+        },
+        "value": ""
+      }
+    ]
+  },
+  {
+    "type": "group",
+    "label": {
+      "en": "Room temperature (DPT 9.001)"
+    },
+    "children": [
+      {
+        "id": "ga_temp_status",
+        "type": "text",
+        "label": {
+          "en": "Status address"
+        },
+        "value": "",
+        "hint": {
+          "en": "For example the AC return temperature."
+        }
+      },
+      {
+        "id": "temp_from_flow",
+        "type": "checkbox",
+        "label": {
+          "en": "Room temperature is set by a flow"
+        },
+        "value": false,
+        "hint": {
+          "en": "Shows the room temperature on the device even without a status address, so the \"Set room temperature\" flow card can update it, for example from another sensor. If both are used, whichever updated last is shown."
+        }
+      },
+      {
+        "id": "ga_temp_write",
+        "type": "text",
+        "label": {
+          "en": "Send flow value to address"
+        },
+        "value": "",
+        "hint": {
+          "en": "Optional. The \"Set room temperature\" flow card also writes its value here (DPT 9.001), for example the external temperature input of an AC gateway. Leave empty to only update Homey."
+        }
+      }
+    ]
+  },
+  {
+    "type": "group",
+    "label": {
+      "en": "Fan speed (DPT 5.001 / 5.010)"
+    },
+    "children": [
+      {
+        "id": "ga_fan_write",
+        "type": "text",
+        "label": {
+          "en": "Control address"
+        },
+        "value": "",
+        "hint": {
+          "en": "Fan speed object, 1 byte."
+        }
+      },
+      {
+        "id": "ga_fan_status",
+        "type": "text",
+        "label": {
+          "en": "Status address"
+        },
+        "value": ""
+      },
+      {
+        "id": "fan_speeds",
+        "type": "dropdown",
+        "label": {
+          "en": "Number of speeds"
+        },
+        "value": "3",
+        "values": [
+          {
+            "id": "2",
+            "label": {
+              "en": "2 (Low, High)"
+            }
+          },
+          {
+            "id": "3",
+            "label": {
+              "en": "3 (Low, Medium, High)"
+            }
+          }
+        ]
+      },
+      {
+        "id": "fan_dpt",
+        "type": "dropdown",
+        "label": {
+          "en": "Data type"
+        },
+        "value": "enum",
+        "values": [
+          {
+            "id": "percent",
+            "label": {
+              "en": "Percentage (DPT 5.001)"
+            }
+          },
+          {
+            "id": "enum",
+            "label": {
+              "en": "Enumerated (DPT 5.010)"
+            }
+          }
+        ],
+        "hint": {
+          "en": "Percentage sends 50/100 % for 2 speeds or 33/67/100 % for 3 speeds; received values snap to the nearest speed. Enumerated sends a speed number."
+        }
+      },
+      {
+        "id": "fan_enum_base",
+        "type": "dropdown",
+        "label": {
+          "en": "Enumerated: first speed value"
+        },
+        "value": "1",
+        "values": [
+          {
+            "id": "1",
+            "label": {
+              "en": "1 (speeds 1, 2, 3)"
+            }
+          },
+          {
+            "id": "0",
+            "label": {
+              "en": "0 (speeds 0, 1, 2)"
+            }
+          }
+        ],
+        "hint": {
+          "en": "Only used with DPT 5.010. Match the gateway parameter, for example the Intesis \"fan speed enumeration starts at\" setting."
+        }
+      }
+    ]
+  },
+  {
+    "type": "group",
+    "label": {
+      "en": "Fan auto (DPT 1.001)"
+    },
+    "children": [
+      {
+        "id": "ga_fanauto_write",
+        "type": "text",
+        "label": {
+          "en": "Control address"
+        },
+        "value": "",
+        "hint": {
+          "en": "1 = auto fan, 0 = manual. When set, Auto is added to the fan speed picker. Choosing a fixed speed sends 0 here first."
+        }
+      },
+      {
+        "id": "ga_fanauto_status",
+        "type": "text",
+        "label": {
+          "en": "Status address"
+        },
+        "value": ""
+      }
+    ]
+  },
+  {
+    "type": "group",
+    "label": {
+      "en": "Setpoint range"
+    },
+    "children": [
+      {
+        "id": "temp_min",
+        "type": "number",
+        "label": {
+          "en": "Minimum (°C)"
+        },
+        "value": 16,
+        "min": 5,
+        "max": 40
+      },
+      {
+        "id": "temp_max",
+        "type": "number",
+        "label": {
+          "en": "Maximum (°C)"
+        },
+        "value": 32,
+        "min": 5,
+        "max": 40
+      },
+      {
+        "id": "temp_step",
+        "type": "number",
+        "label": {
+          "en": "Step (°C)"
+        },
+        "value": 1,
+        "min": 0.1,
+        "max": 5
+      }
+    ]
+  },
+  {
+    "type": "group",
+    "label": {
+      "en": "Modes to expose"
+    },
+    "children": [
+      {
+        "id": "modes_hint",
+        "type": "label",
+        "label": {
+          "en": "Tick the DPT 20.105 modes this device supports. Only ticked modes appear in the app and in flows. Without a 20.105 address, only Heat and Cool are used."
+        },
+        "value": ""
+      },
+      {
+        "id": "mode_auto",
+        "type": "checkbox",
+        "label": {
+          "en": "0: Auto"
+        },
+        "value": true
+      },
+      {
+        "id": "mode_heat",
+        "type": "checkbox",
+        "label": {
+          "en": "1: Heat"
+        },
+        "value": true
+      },
+      {
+        "id": "mode_morning_warmup",
+        "type": "checkbox",
+        "label": {
+          "en": "2: Morning warmup"
+        },
+        "value": false
+      },
+      {
+        "id": "mode_cool",
+        "type": "checkbox",
+        "label": {
+          "en": "3: Cool"
+        },
+        "value": true
+      },
+      {
+        "id": "mode_night_purge",
+        "type": "checkbox",
+        "label": {
+          "en": "4: Night purge"
+        },
+        "value": false
+      },
+      {
+        "id": "mode_precool",
+        "type": "checkbox",
+        "label": {
+          "en": "5: Precool"
+        },
+        "value": false
+      },
+      {
+        "id": "mode_off",
+        "type": "checkbox",
+        "label": {
+          "en": "6: Off"
+        },
+        "value": false
+      },
+      {
+        "id": "mode_test",
+        "type": "checkbox",
+        "label": {
+          "en": "7: Test"
+        },
+        "value": false
+      },
+      {
+        "id": "mode_emergency_heat",
+        "type": "checkbox",
+        "label": {
+          "en": "8: Emergency heat"
+        },
+        "value": false
+      },
+      {
+        "id": "mode_fan_only",
+        "type": "checkbox",
+        "label": {
+          "en": "9: Fan only"
+        },
+        "value": true
+      },
+      {
+        "id": "mode_free_cooling",
+        "type": "checkbox",
+        "label": {
+          "en": "10: Free cooling"
+        },
+        "value": false
+      },
+      {
+        "id": "mode_ice_making",
+        "type": "checkbox",
+        "label": {
+          "en": "11: Ice making"
+        },
+        "value": false
+      },
+      {
+        "id": "mode_max_heating",
+        "type": "checkbox",
+        "label": {
+          "en": "12: Maximum heating"
+        },
+        "value": false
+      },
+      {
+        "id": "mode_economic",
+        "type": "checkbox",
+        "label": {
+          "en": "13: Economic heat/cool"
+        },
+        "value": false
+      },
+      {
+        "id": "mode_dehumidification",
+        "type": "checkbox",
+        "label": {
+          "en": "14: Dry (dehumidification)"
+        },
+        "value": true
+      },
+      {
+        "id": "mode_calibration",
+        "type": "checkbox",
+        "label": {
+          "en": "15: Calibration"
+        },
+        "value": false
+      },
+      {
+        "id": "mode_emergency_cool",
+        "type": "checkbox",
+        "label": {
+          "en": "16: Emergency cool"
+        },
+        "value": false
+      },
+      {
+        "id": "mode_emergency_steam",
+        "type": "checkbox",
+        "label": {
+          "en": "17: Emergency steam"
+        },
+        "value": false
+      },
+      {
+        "id": "mode_no_demand",
+        "type": "checkbox",
+        "label": {
+          "en": "20: No demand"
+        },
+        "value": false
+      }
+    ]
+  }
+]

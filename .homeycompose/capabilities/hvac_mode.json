@@ -1,0 +1,125 @@
+{
+  "type": "enum",
+  "title": {
+    "en": "HVAC mode"
+  },
+  "getable": true,
+  "setable": true,
+  "uiComponent": "picker",
+  "values": [
+    {
+      "id": "auto",
+      "title": {
+        "en": "Auto"
+      }
+    },
+    {
+      "id": "heat",
+      "title": {
+        "en": "Heat"
+      }
+    },
+    {
+      "id": "morning_warmup",
+      "title": {
+        "en": "Morning warmup"
+      }
+    },
+    {
+      "id": "cool",
+      "title": {
+        "en": "Cool"
+      }
+    },
+    {
+      "id": "night_purge",
+      "title": {
+        "en": "Night purge"
+      }
+    },
+    {
+      "id": "precool",
+      "title": {
+        "en": "Precool"
+      }
+    },
+    {
+      "id": "off",
+      "title": {
+        "en": "Off"
+      }
+    },
+    {
+      "id": "test",
+      "title": {
+        "en": "Test"
+      }
+    },
+    {
+      "id": "emergency_heat",
+      "title": {
+        "en": "Emergency heat"
+      }
+    },
+    {
+      "id": "fan_only",
+      "title": {
+        "en": "Fan only"
+      }
+    },
+    {
+      "id": "free_cooling",
+      "title": {
+        "en": "Free cooling"
+      }
+    },
+    {
+      "id": "ice_making",
+      "title": {
+        "en": "Ice making"
+      }
+    },
+    {
+      "id": "max_heating",
+      "title": {
+        "en": "Maximum heating"
+      }
+    },
+    {
+      "id": "economic",
+      "title": {
+        "en": "Economic heat/cool"
+      }
+    },
+    {
+      "id": "dehumidification",
+      "title": {
+        "en": "Dry (dehumidification)"
+      }
+    },
+    {
+      "id": "calibration",
+      "title": {
+        "en": "Calibration"
+      }
+    },
+    {
+      "id": "emergency_cool",
+      "title": {
+        "en": "Emergency cool"
+      }
+    },
+    {
+      "id": "emergency_steam",
+      "title": {
+        "en": "Emergency steam"
+      }
+    },
+    {
+      "id": "no_demand",
+      "title": {
+        "en": "No demand"
+      }
+    }
+  ]
+}

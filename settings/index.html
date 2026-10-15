@@ -1,0 +1,96 @@
+<!doctype html>
+<html>
+  <head>
+    <script type="text/javascript" src="/homey.js" data-origin="settings"></script>
+  </head>
+  <body>
+    <h1 class="homey-title">KNX connection</h1>
+    <p class="homey-subtitle">
+      One connection is shared by all KNX thermostats. Use tunnelling with your KNX/IP interface address,
+      or routing with a KNX/IP router.
+    </p>
+
+    <fieldset class="homey-form-fieldset">
+      <div class="homey-form-group">
+        <label class="homey-form-label" for="mode">Mode</label>
+        <select class="homey-form-select" id="mode">
+          <option value="tunnel">Tunnelling (KNX/IP interface)</option>
+          <option value="routing">Routing (KNX/IP router, multicast)</option>
+        </select>
+      </div>
+      <div class="homey-form-group">
+        <label class="homey-form-label" for="ip">KNX/IP address</label>
+        <input class="homey-form-input" id="ip" type="text" placeholder="192.168.1.50" />
+      </div>
+      <div class="homey-form-group">
+        <label class="homey-form-label" for="port">Port</label>
+        <input class="homey-form-input" id="port" type="number" value="3671" />
+      </div>
+      <div class="homey-form-group">
+        <label class="homey-form-label" for="physAddr">Source address (routing)</label>
+        <input class="homey-form-input" id="physAddr" type="text" value="15.15.250" />
+      </div>
+    </fieldset>
+
+    <button id="save" class="homey-button-primary-full">Save and connect</button>
+    <p id="status" class="homey-text-small" style="margin-top: 16px"></p>
+
+    <script type="text/javascript">
+      function onHomeyReady(Homey) {
+        const $ = (id) => document.getElementById(id);
+
+        function renderStatus() {
+          Homey.get('link_status', (err, status) => {
+            if (err || !status) {
+              $('status').textContent = 'Status: not connected';
+              return;
+            }
+            const names = {
+              connected: 'Connected',
+              disconnected: 'Connecting',
+              error: 'Error',
+              unconfigured: 'Not configured',
+            };
+            const detail = status.detail ? ' (' + status.detail + ')' : '';
+            $('status').textContent = 'Status: ' + (names[status.state] || status.state) + detail;
+          });
+        }
+
+        function updateFields() {
+          const routing = $('mode').value === 'routing';
+          $('ip').placeholder = routing ? '224.0.23.12 (default)' : '192.168.1.50';
+          $('physAddr').disabled = !routing;
+        }
+
+        Homey.get('connection', (err, cfg) => {
+          if (!err && cfg) {
+            $('mode').value = cfg.mode || 'tunnel';
+            $('ip').value = cfg.ip || '';
+            $('port').value = cfg.port || 3671;
+            $('physAddr').value = cfg.physAddr || '15.15.250';
+          }
+          updateFields();
+        });
+
+        $('mode').addEventListener('change', updateFields);
+
+        $('save').addEventListener('click', () => {
+          const cfg = {
+            mode: $('mode').value,
+            ip: $('ip').value.trim(),
+            port: Number($('port').value) || 3671,
+            physAddr: $('physAddr').value.trim() || '15.15.250',
+          };
+          Homey.set('connection', cfg, (err) => {
+            if (err) return Homey.alert(err.message || String(err));
+            setTimeout(renderStatus, 1500);
+          });
+        });
+
+        renderStatus();
+        setInterval(renderStatus, 3000);
+        Homey.ready();
+      }
+    </script>
+  </body>
+</html>

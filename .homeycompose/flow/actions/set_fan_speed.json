@@ -1,0 +1,8 @@
+{
+  "title": { "en": "Set fan speed" },
+  "titleFormatted": { "en": "Set fan speed to [[speed]]" },
+  "args": [
+    { "type": "device", "name": "device", "filter": "driver_id=thermostat&capabilities=fan_speed" },
+    { "type": "autocomplete", "name": "speed", "placeholder": { "en": "Select a fan speed" } }
+  ]
+}

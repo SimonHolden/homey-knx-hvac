@@ -1,0 +1,26 @@
+{
+  "name": { "en": "KNX Thermostat" },
+  "class": "thermostat",
+  "capabilities": ["onoff", "hvac_mode", "fan_speed", "target_temperature", "measure_temperature"],
+  "capabilitiesOptions": {
+    "target_temperature": { "min": 16, "max": 32, "step": 1 }
+  },
+  "platforms": ["local"],
+  "connectivity": ["lan"],
+  "images": {
+    "small": "/drivers/thermostat/assets/images/small.png",
+    "large": "/drivers/thermostat/assets/images/large.png",
+    "xlarge": "/drivers/thermostat/assets/images/xlarge.png"
+  },
+  "pair": [
+    {
+      "id": "list_devices",
+      "template": "list_devices",
+      "navigation": { "next": "add_devices" }
+    },
+    {
+      "id": "add_devices",
+      "template": "add_devices"
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "title": { "en": "Fan speed changed" },
+  "tokens": [
+    { "name": "speed", "type": "string", "title": { "en": "Fan speed id" }, "example": { "en": "high" } },
+    { "name": "speed_name", "type": "string", "title": { "en": "Fan speed" }, "example": { "en": "High" } }
+  ],
+  "args": [
+    { "type": "device", "name": "device", "filter": "driver_id=thermostat&capabilities=fan_speed" }
+  ]
+}

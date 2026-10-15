@@ -1,0 +1,8 @@
+{
+  "title": { "en": "HVAC mode is..." },
+  "titleFormatted": { "en": "HVAC mode !{{is|is not}} [[mode]]" },
+  "args": [
+    { "type": "device", "name": "device", "filter": "driver_id=thermostat" },
+    { "type": "autocomplete", "name": "mode", "placeholder": { "en": "Select a mode" } }
+  ]
+}

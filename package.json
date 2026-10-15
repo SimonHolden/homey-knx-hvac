@@ -1,0 +1,10 @@
+{
+  "name": "com.sinclair.knx-hvac",
+  "version": "1.0.0",
+  "description": "KNX HVAC controller mode (DPT 20.105) for Homey",
+  "main": "app.js",
+  "license": "GPL-3.0",
+  "dependencies": {
+    "knx": "^2.5.0"
+  }
+}

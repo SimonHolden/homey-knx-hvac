@@ -1,0 +1,23 @@
+{
+  "id": "com.sinclair.knx-hvac",
+  "version": "1.0.0",
+  "compatibility": ">=5.0.0",
+  "sdk": 3,
+  "platforms": ["local"],
+  "name": { "en": "KNX HVAC" },
+  "description": {
+    "en": "KNX thermostats with full DPT 20.105 HVAC mode support, plus on/off and heat/cool objects."
+  },
+  "category": ["climate"],
+  "permissions": [],
+  "brandColor": "#0A84C6",
+  "images": {
+    "small": "/assets/images/small.png",
+    "large": "/assets/images/large.png",
+    "xlarge": "/assets/images/xlarge.png"
+  },
+  "author": {
+    "name": "Sinclair Technology",
+    "email": "simon@sintech.nz"
+  }
+}

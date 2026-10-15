@@ -1,0 +1,9 @@
+{
+  "title": { "en": "Set room temperature" },
+  "titleFormatted": { "en": "Set room temperature to [[temperature]] °C" },
+  "hint": { "en": "Tick \"Room temperature is set by a flow\" in the device settings, or set a room temperature address, for this to show on the device." },
+  "args": [
+    { "type": "device", "name": "device", "filter": "driver_id=thermostat" },
+    { "type": "number", "name": "temperature", "placeholder": { "en": "°C" }, "step": 0.1 }
+  ]
+}
