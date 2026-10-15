@@ -88,3 +88,7 @@ each object in ETS.
   the interface keeps the old tunnel for up to 2 minutes, and the app connects as soon as it is released.
 - The alarm object is not included yet.
 - `lib/hvac-modes.js` is the single list of modes. After editing it, run `node scripts/generate-compose.js`.
+
+## License
+
+GPL-3.0. See [LICENSE](LICENSE).
